@@ -1,0 +1,7 @@
+-cp src
+-cp test
+-cp libs
+-main Main
+./hxmls/haxelibs.hxml
+--macro macropm.Macro.init()
+--interp
