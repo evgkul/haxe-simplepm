@@ -1,0 +1,15 @@
+#Starting simplepm_hxmls/install.hxml
+#Starting loading library hscript
+-cp macropm/simplepm_modules/hscript
+#Starting simplepm_modules/hscript/extraParams.hxml
+--macro keep('IntIterator')
+#Finished simplepm_modules/hscript/extraParams.hxml
+#Finished loading library hscript
+#Starting loading library tink_core
+-cp macropm/simplepm_modules/tink_core/src
+#Finished loading library tink_core
+-cp macropm/src
+-cp macropm/libs
+--interp 
+--main simplepm.CompileAll
+#Finished simplepm_hxmls/install.hxml

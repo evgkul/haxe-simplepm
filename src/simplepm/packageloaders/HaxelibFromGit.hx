@@ -2,6 +2,7 @@ package simplepm.packageloaders;
 
 import sys.FileSystem;
 import simplepm.PackagesHolder;
+import simplepm.FileUtils;
 import sys.io.Process;
 import haxe.io.Path;
 import sys.io.File;
@@ -41,6 +42,7 @@ class HaxelibFromGit extends CopyFromHaxelib {
 			if (ecode != 0) {
 				throw 'Unable to download package ' + info.name + ' from ' + repo;
 			}
+
 		}
         return super.setPackagePath(path,true);
 	}

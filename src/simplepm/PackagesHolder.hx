@@ -81,6 +81,7 @@ class PackagesHolder {
     public function download(){
         addDependencies(recentlyAdded);
         for(pkg in not_loaded){
+            Sys.println('Downloading package '+pkg.name);
             var path = getPath(pkg.name,true);
             FileSystem.createDirectory(path);
             pkg.loader.downloadTo(path);

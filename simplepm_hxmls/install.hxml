@@ -3,4 +3,4 @@
 -cp src
 -cp libs
 --interp
---main macropm.CompileAll
+--main simplepm.CompileAll
