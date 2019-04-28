@@ -32,11 +32,12 @@ class HaxelibFromGit extends CopyFromHaxelib {
 		if (!exists) {
 			// Downloading from git...
 			//path = Path.join(['simplepm_modules', info.name]);
-			var git_args = ['clone', repo, '--depth', '1', path];
+			var git_args = ['subtree','add','--prefix=${path}', repo];
             if(info.version!=null){
-                git_args.push('--branch');
                 git_args.push(info.version);
-            }
+            } else {
+				git_args.push('master');
+			}
 			// var process = new Process('git',git_args);
 			var ecode = Sys.command('git', git_args);
 			if (ecode != 0) {
