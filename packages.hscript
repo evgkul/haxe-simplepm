@@ -1,4 +1,4 @@
-classpathPrefix = 'macropm';
+classpathPrefix = 'simplepm';
 packages.addPackages([
     CopyFromHaxelib.create('hscript'),
     CopyFromHaxelib.create('tink_core')
