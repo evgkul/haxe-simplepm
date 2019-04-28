@@ -10,20 +10,31 @@ import tink.core.Future;
 using parsihax.Parser;
 
 typedef ParserContext = {
-    rootPath:String
+    rootPath:String,
+    ?rewriter:HxmlRewrite
 }
 
 class HxmlRewrite {
 	// public var parser:parsihax.ParseObject<String>;
 	public function new() {}
 
+    public dynamic function getLibDefinition(libname:String,context:ParserContext):String{
+        throw 'Lib loading not implemented!';
+    }
+
 	public var argProcessor:Map<String, String->ParserContext->ParseObject<String>> = [
 		'cp' => function(arg,context) {
 			return all().map(function(s) {
-                trace('classpath', arg, s);
 				return '-' + arg + ' ' + Path.join([context.rootPath,s]);
 			});
-		}
+		},
+        'lib' => function(arg,context) {
+            return all().map(function(s){
+                var before = '#Starting loading library '+s+'\n';
+                var after = '\n#Finished loading library '+s;
+                return before+context.rewriter.rewrite(context.rewriter.getLibDefinition(s,context),context)+after;
+            });
+        }
 	];
 
 	function getParser(context:ParserContext) {
@@ -40,10 +51,11 @@ class HxmlRewrite {
 		var processPath = all().skip(whitespace().many()).map(function(path) {
 			// trace('RewriteFile!',path);
 			var before = '#Starting ${path}\n';
-			var after = '\n#Finishing ${path}';
-			return before + rewrite(sys.io.File.getContent(path)) + after;
+			var after = '\n#Finished ${path}';
+			return before + rewrite(sys.io.File.getContent(path),context) + after;
 		});
 		var processLine = alt([
+            eof().result(''),
 			'-'.char().then(processArgument),
 			'#'.char().then(all()).map(function(s) return '#' + s),
 			processPath
@@ -51,10 +63,12 @@ class HxmlRewrite {
 		return processLine;
 	}
 
-	public function rewrite(src:String) {
-		var parser = getParser({
+	public function rewrite(src:String,?context:ParserContext) {
+        if(context==null) context = {
             rootPath: '.'
-        });
+        };
+        context.rewriter = this;
+		var parser = getParser(context);
 		return src.split('\n').map(function(c) return parser.apply(c).value).join('\n');
 	}
 }

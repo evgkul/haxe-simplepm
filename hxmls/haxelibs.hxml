@@ -1,2 +1,3 @@
 #Loading libraries through haxelib
 -lib tink_core
+-lib hscript

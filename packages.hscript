@@ -1,0 +1,5 @@
+classpathPrefix = 'macropm';
+packages.addPackages([
+    CopyFromHaxelib.create('hscript'),
+    CopyFromHaxelib.create('tink_core')
+])

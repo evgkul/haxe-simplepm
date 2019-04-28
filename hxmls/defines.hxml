@@ -1,1 +1,3 @@
 -D test_target="tmp"
+
+-D hscriptPos

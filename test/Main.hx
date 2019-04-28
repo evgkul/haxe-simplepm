@@ -1,9 +1,37 @@
+import sys.io.File;
+import sys.FileSystem;
+import macropm.packageloaders.CopyFromHaxelib;
+import macropm.PackagesHolder;
+
 class Main {
     static function main(){
-        trace('It works!');
+        /*trace('It works!');
+        Sys.println(Sys.command('rm',['-rf','macropm_modules']));
         var rewriter = new macropm.HxmlRewrite();
-        Sys.println(
-            rewriter.rewrite('#ddd\ntest.hxml\n#d2')
+        
+        var holder = new PackagesHolder();
+        holder.hxmlOffset = 'tmp';
+        rewriter.getLibDefinition = holder.getLibraryDefinition;
+        holder.addPackage(
+            macropm.packageloaders.CopyFromHaxelib.create('tink_macro')
         );
+        holder.addPackage(
+            macropm.packageloaders.CopyFromHaxelib.create('tink_lang')
+        );
+        holder.addPackage(
+            macropm.packageloaders.HaxelibFromGit.create('https://github.com/haxetink/tink_anon','0.1.0')
+        );
+        holder.addPackage(
+            macropm.packageloaders.CopyFromHaxelib.create('hscript')
+        );
+        //Sys.println(@:privateAccess holder.packages);
+        @:privateAccess holder.download();
+        Sys.println('rewrite test!\n'+rewriter.rewrite('test.hxml'));*/
+        var compiler = new macropm.HxmlCompiler();
+        compiler.configureByHscript(
+            File.getContent('packages.hscript')
+        );
+
+        Sys.println('Compiled: '+compiler.compileHxml('test.hxml'));
     }
 }

@@ -1,0 +1,6 @@
+-lib hscript
+-lib tink_core
+-cp src
+-cp libs
+--interp
+--main macropm.CompileAll

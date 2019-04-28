@@ -5,3 +5,4 @@
 ./hxmls/haxelibs.hxml
 --macro macropm.Macro.init()
 --interp
+-debug
