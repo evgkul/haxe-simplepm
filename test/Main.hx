@@ -1,7 +1,7 @@
 import sys.io.File;
 import sys.FileSystem;
-import macropm.packageloaders.CopyFromHaxelib;
-import macropm.PackagesHolder;
+import simplepm.packageloaders.CopyFromHaxelib;
+import simplepm.PackagesHolder;
 
 class Main {
     static function main(){
@@ -27,7 +27,7 @@ class Main {
         //Sys.println(@:privateAccess holder.packages);
         @:privateAccess holder.download();
         Sys.println('rewrite test!\n'+rewriter.rewrite('test.hxml'));*/
-        var compiler = new macropm.HxmlCompiler();
+        var compiler = new simplepm.HxmlCompiler();
         compiler.configureByHscript(
             File.getContent('packages.hscript')
         );

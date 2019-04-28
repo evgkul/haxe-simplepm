@@ -1,7 +1,7 @@
-package macropm.packageloaders;
+package simplepm.packageloaders;
 
 import sys.FileSystem;
-import macropm.PackagesHolder;
+import simplepm.PackagesHolder;
 import sys.io.Process;
 import haxe.io.Path;
 import sys.io.File;
@@ -30,7 +30,7 @@ class HaxelibFromGit extends CopyFromHaxelib {
 	override public function setPackagePath(path:String,exists:Bool) {
 		if (!exists) {
 			// Downloading from git...
-			//path = Path.join(['macropm_modules', info.name]);
+			//path = Path.join(['simplepm_modules', info.name]);
 			var git_args = ['clone', repo, '--depth', '1', path];
             if(info.version!=null){
                 git_args.push('--branch');

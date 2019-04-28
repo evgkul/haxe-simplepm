@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 import parsihax.*;
 import parsihax.Parser.*;

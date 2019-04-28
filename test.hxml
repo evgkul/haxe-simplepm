@@ -3,6 +3,6 @@
 -cp libs
 -main Main
 ./hxmls/haxelibs.hxml
---macro macropm.Macro.init()
+--macro simplepm.Macro.init()
 --interp
 -debug

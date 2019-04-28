@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 interface PackageLoader {
     public function setPackagePath(path:String,exists:Bool):Void;

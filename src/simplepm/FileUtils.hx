@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 import haxe.io.Path;
 import sys.FileSystem;
@@ -19,5 +19,17 @@ class FileUtils {
                 File.copy(item_path,to_path);
             }
         }
+    }
+    public static function removeDirectory(path:String){
+        for(item in FileSystem.readDirectory(path)){
+            //Sys.println('Item '+item);
+            var item_path = Path.join([path,item]);
+            if(FileSystem.isDirectory(item_path)){
+                removeDirectory(item_path);
+            } else {
+                FileSystem.deleteFile(item_path);
+            }
+        }
+        FileSystem.deleteDirectory(path);
     }
 }

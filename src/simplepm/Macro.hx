@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 class Macro {
     #if macro

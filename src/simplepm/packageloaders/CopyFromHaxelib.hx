@@ -1,12 +1,12 @@
-package macropm.packageloaders;
+package simplepm.packageloaders;
 
 import sys.FileSystem;
-import macropm.PackagesHolder;
+import simplepm.PackagesHolder;
 import sys.io.Process;
 import haxe.io.Path;
 import sys.io.File;
 
-class CopyFromHaxelib implements macropm.PackageLoader {
+class CopyFromHaxelib implements simplepm.PackageLoader {
     var info:PackageInfo;
     var pkgname:String;
     var path:String;
@@ -56,12 +56,12 @@ class CopyFromHaxelib implements macropm.PackageLoader {
         return process.stdout.readLine();
     }
     public function downloadTo(path){
-        Sys.println('Loading haxelib package with name '+info.name);
-        macropm.FileUtils.copyDirectory(this.path,path);
+        //Sys.println('Loading haxelib package with name '+info.name);
+        simplepm.FileUtils.copyDirectory(this.path,path);
         
     }
     public function getArguments(path){
-        trace('json',json,path);
+        //trace('json',json,path);
         var classpath = json.classPath;
         if(classpath==null) classpath='.';
         var res = [

@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 import haxe.io.StringInput;
 import hscript.Parser;
@@ -28,8 +28,8 @@ class HxmlCompiler {
         interp.variables.set('print',Sys.print);
         interp.variables.set('println',Sys.println);
         interp.variables.set('packages',holder);
-        interp.variables.set('CopyFromHaxelib',macropm.packageloaders.CopyFromHaxelib);
-        interp.variables.set('HaxelibFromGit',macropm.packageloaders.HaxelibFromGit);
+        interp.variables.set('CopyFromHaxelib',simplepm.packageloaders.CopyFromHaxelib);
+        interp.variables.set('HaxelibFromGit',simplepm.packageloaders.HaxelibFromGit);
         interp.variables.set('classpathPrefix','');
         interp.execute(
             parser.parse( new StringInput(code) )

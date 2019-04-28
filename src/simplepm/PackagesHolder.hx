@@ -1,4 +1,4 @@
-package macropm;
+package simplepm;
 
 import sys.FileSystem;
 import haxe.io.Path;
@@ -12,7 +12,7 @@ typedef PackageInfo = {
 }
 
 class PackagesHolder {
-    private var packages_path = 'macropm_modules';
+    private var packages_path = 'simplepm_modules';
     private var loaded:Array<String>;
     private var not_loaded:Array<PackageInfo> = [];
     public var offset(default,set) = '.';
@@ -86,7 +86,7 @@ class PackagesHolder {
             pkg.loader.downloadTo(path);
             pkg.loader.setPackagePath(path,true);
             var version = pkg.version==null?'':pkg.version;
-            File.saveContent(Path.join([path,'.macropm_package_version']),version);
+            File.saveContent(Path.join([path,'.simplepm_package_version']),version);
             loaded.push(pkg.name);
             //Sys.println('Loaded '+pkg.loader.getArguments(path));
         }
