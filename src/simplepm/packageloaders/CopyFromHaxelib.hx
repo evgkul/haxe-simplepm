@@ -58,6 +58,9 @@ class CopyFromHaxelib implements simplepm.PackageLoader {
     public function downloadTo(path){
         //Sys.println('Loading haxelib package with name '+info.name);
         simplepm.FileUtils.copyDirectory(this.path,path);
+        try {
+            simplepm.FileUtils.removeDirectory(Path.join([path,'.git']));
+        } catch(e:Dynamic){}
         
     }
     public function getArguments(path){
