@@ -72,7 +72,7 @@ class CopyFromHaxelib implements simplepm.PackageLoader {
         var res = [
             '-cp ${Path.join([path,classpath])}',
         ];
-        res.concat(dependencies_args);
+        res = res.concat(dependencies_args);
         var extra_path = Path.join([path,'extraParams.hxml']);
         if(FileSystem.exists(extra_path)){
             res.push(extra_path);
