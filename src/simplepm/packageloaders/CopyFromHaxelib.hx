@@ -15,6 +15,7 @@ class CopyFromHaxelib implements simplepm.PackageLoader {
         this.info = info;
         pkgname = info.name;
     }
+    var dependencies_args:Array<String> = [];
     public function setPackagePath(p:String,exists:Bool){
         if(exists){
             this.path = p;
@@ -29,6 +30,7 @@ class CopyFromHaxelib implements simplepm.PackageLoader {
             trace('Processing package',name);
             var version = dependencies[name];
             if(version=='') version = null;
+            dependencies_args.push('-lib '+name);
             info.dependencies.push(CopyFromHaxelib.create(name,version));
         }
     }
@@ -70,6 +72,7 @@ class CopyFromHaxelib implements simplepm.PackageLoader {
         var res = [
             '-cp ${Path.join([path,classpath])}',
         ];
+        res.concat(dependencies_args);
         var extra_path = Path.join([path,'extraParams.hxml']);
         if(FileSystem.exists(extra_path)){
             res.push(extra_path);
